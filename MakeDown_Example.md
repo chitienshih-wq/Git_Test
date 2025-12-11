@@ -338,7 +338,7 @@ flowchart TD
 
 ## 8. Mermaid Diagram (Large-Scale System Architecture)
 
-```mermaid
+mermaid
 flowchart LR
 
     %% ========== Client Layer ==========
@@ -485,4 +485,4 @@ flowchart LR
     K8S --> GATEWAY
     K8S --> ASYNC
     K8S --> DATA
-```
+
