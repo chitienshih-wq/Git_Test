@@ -178,5 +178,108 @@ print("Hello")
 
 
 
+# Advanced Markdown Showcase  
+> A demonstration of what advanced Markdown formatting can achieve.
+
+## 1. Introduction
+Markdown is a lightweight markup language for writing documentation, notes, and web content.
+
+---
+
+## 2. Table of Contents
+- [Introduction](#1-introduction)  
+- [Table Example](#3-table-example)  
+- [Code Blocks](#4-code-blocks)  
+- [Quotes & Footnotes](#5-quotes--footnotes)  
+- [To-Do List](#6-to-do-list)  
+- [Collapsible Section](#7-collapsible-section)  
+- [Mermaid Diagram](#8-mermaid-diagram)  
+
+---
+
+## 3. Table Example
+
+| Feature            | Support | Notes |
+|-------------------|---------|-------|
+| **Bold / Italic** | ✔️      | Emphasis |
+| **Tables**        | ✔️      | Useful for comparison |
+| **Code Highlight**| ✔️      | Multi-language |
+| **Collapsible**   | Partial | Platform-dependent |
+| **Mermaid**       | Partial | Platform-dependent |
+
+---
+
+## 4. Code Blocks
+
+### Python
+```python
+def fibonacci(n):
+    seq = [0, 1]
+    for i in range(2, n):
+        seq.append(seq[-1] + seq[-2])
+    return seq
+
+print(fibonacci(10))
+```
+
+### Bash
+```bash
+#!/bin/bash
+echo "Deploying project..."
+git pull origin main
+docker compose up -d
+```
+
+---
+
+## 5. Quotes & Footnotes
+
+> “Simplicity is the soul of wit.” — Shakespeare
+
+This is a sentence with a footnote.[^1]
+
+[^1]: Footnote content.
+
+---
+
+## 6. To-Do List
+- [x] Create sample Markdown  
+- [ ] Add images  
+- [x] Add code blocks  
+- [ ] Final review  
+
+---
+
+## 7. Collapsible Section
+
+<details>
+<summary>Click to expand</summary>
+
+### Inside the collapsible block
+
+- Supports **bold**, *italic*
+- Supports code blocks:
+
+```js
+console.log("Inside collapsible block");
+```
+
+</details>
+
+---
+
+## 8. Mermaid Diagram
+```mermaid
+flowchart TD
+    A[Start] --> B{Login?}
+    B -- Yes --> C[Dashboard]
+    B -- No --> D[Show Error]
+    C --> E[Logout]
+```
+
+---
+
+## 9. Conclusion
+Markdown is flexible and powerful, especially with extended features.
 
 
