@@ -330,3 +330,159 @@ flowchart TD
     H -- No --> C
     I --> J([End])
 ```
+
+
+
+
+---
+
+## 8. Mermaid Diagram (Large-Scale System Architecture)
+
+```mermaid
+flowchart LR
+
+    %% ========== Client Layer ==========
+    subgraph CLIENTS [Client Layer]
+        WEB[Web Client] 
+        MOB[Mobile App] 
+        EXT[3rd-Party Integrations]
+    end
+
+    %% ========== Edge / Delivery Layer ==========
+    subgraph EDGE [Edge & Delivery Layer]
+        CDN[CDN]
+        WAF[WAF / Web Application Firewall]
+        LB[Global Load Balancer]
+    end
+
+    WEB --> CDN --> WAF --> LB
+    MOB --> LB
+    EXT --> LB
+
+    %% ========== API Gateway & Auth ==========
+    subgraph GATEWAY [API Gateway & Auth]
+        APIGW[API Gateway]
+        AUTH[Auth Service<br/>(OAuth2 / JWT)]
+        RATELIMIT[Rate Limiter]
+    end
+
+    LB --> APIGW
+    APIGW --> RATELIMIT --> AUTH
+
+    %% ========== Microservices Layer ==========
+    subgraph SERVICES [Microservices Layer]
+        S_USER[User Service]
+        S_ORDER[Order Service]
+        S_PAYMENT[Payment Service]
+        S_INVENTORY[Inventory Service]
+        S_NOTIFICATION[Notification Service]
+        S_SEARCH[Search Service]
+        S_REPORT[Reporting Service]
+        S_BILLING[Billing Service]
+        S_PROFILE[Profile Service]
+    end
+
+    AUTH --> S_USER
+    APIGW --> S_ORDER
+    APIGW --> S_PAYMENT
+    APIGW --> S_INVENTORY
+    APIGW --> S_NOTIFICATION
+    APIGW --> S_SEARCH
+    APIGW --> S_REPORT
+    APIGW --> S_BILLING
+    APIGW --> S_PROFILE
+
+    %% ========== Async / Messaging Layer ==========
+    subgraph ASYNC [Async & Event Streaming]
+        MQ[Message Queue<br/>(e.g. RabbitMQ)]
+        EVT[Event Bus / Stream<br/>(e.g. Kafka)]
+        DLQ[Dead Letter Queue]
+    end
+
+    S_ORDER --> MQ
+    S_PAYMENT --> MQ
+    S_INVENTORY --> EVT
+    S_NOTIFICATION --> MQ
+    MQ --> DLQ
+
+    EVT --> S_REPORT
+    EVT --> S_BILLING
+    EVT --> S_NOTIFICATION
+
+    %% ========== Data Layer ==========
+    subgraph DATA [Data Storage Layer]
+        DB_USER[(User DB)]
+        DB_ORDER[(Order DB)]
+        DB_PAYMENT[(Payment DB)]
+        DB_INVENTORY[(Inventory DB)]
+        DB_LOG[(Log DB / Data Lake)]
+        CACHE[(Distributed Cache<br/>(e.g. Redis Cluster))]
+        SEARCHIDX[(Search Index<br/>(e.g. Elasticsearch))]
+    end
+
+    S_USER --> DB_USER
+    S_ORDER --> DB_ORDER
+    S_PAYMENT --> DB_PAYMENT
+    S_INVENTORY --> DB_INVENTORY
+    S_REPORT --> DB_LOG
+    S_SEARCH --> SEARCHIDX
+
+    S_USER --> CACHE
+    S_ORDER --> CACHE
+    S_INVENTORY --> CACHE
+    S_PROFILE --> CACHE
+
+    %% ========== Batch / Analytics / BI ==========
+    subgraph ANALYTICS [Analytics / BI / Batch Jobs]
+        ETL[ETL Jobs]
+        DW[(Data Warehouse)]
+        BI[BI Dashboard]
+        ML[ML Service / Recommendation Engine]
+    end
+
+    DB_ORDER --> ETL
+    DB_PAYMENT --> ETL
+    DB_USER --> ETL
+    DB_LOG --> ETL
+
+    ETL --> DW
+    DW --> BI
+    DW --> ML
+    ML --> S_RECO[Recommendation API]
+
+    %% Recommendation API 接回 Gateway
+    S_RECO --> APIGW
+
+    %% ========== Observability & Ops ==========
+    subgraph OBS [Observability & Operations]
+        LOG[Centralized Logging]
+        METRIC[Metrics / Time-Series DB]
+        TRACE[Distributed Tracing]
+        ALERT[Alert Manager]
+        DASH[Ops Dashboard]
+    end
+
+    SERVICES --> LOG
+    SERVICES --> METRIC
+    SERVICES --> TRACE
+    LOG --> ALERT
+    METRIC --> ALERT
+    ALERT --> DASH
+
+    %% ========== Infra / Platform ==========
+    subgraph INFRA [Infrastructure Platform]
+        K8S[Kubernetes Cluster]
+        REG[Container Registry]
+        CI[CI Pipeline]
+        CD[CD Pipeline]
+        SECRETS[Secrets Manager]
+    end
+
+    CI --> CD --> K8S
+    REG --> K8S
+    SECRETS --> SERVICES
+    K8S --> SERVICES
+    K8S --> GATEWAY
+    K8S --> ASYNC
+    K8S --> DATA
+```
