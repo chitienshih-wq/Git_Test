@@ -284,3 +284,49 @@ Markdown is flexible and powerful, especially with extended features.
 
 
 
+## 8. Mermaid Diagram (Advanced)
+
+```mermaid
+flowchart TD
+
+    %% 主流程
+    A([Start]) --> B{User Logged In?}
+
+    B -- Yes --> C[Load User Dashboard]
+    B -- No --> D[Redirect to Login Page]
+
+    %% 子流程：登入流程
+    subgraph LOGIN_FLOW [Login Process]
+        D --> D1[User Enters Credentials]
+        D1 --> D2{Credentials Valid?}
+        D2 -- Yes --> D3[Create Session Token]
+        D2 -- No --> D4[Show Error Message]
+        D4 --> D1
+    end
+
+    D3 --> C
+
+    %% 子流程：Dashboard 功能
+    subgraph DASHBOARD [Dashboard Modules]
+        C --> E[Load Notifications]
+        C --> F[Load Recent Activities]
+        C --> G[Fetch User Settings]
+
+        E --> E1{Unread Messages?}
+        E1 -- Yes --> E2[Highlight Message Icon]
+        E1 -- No --> E3[Normal State]
+
+        F --> F1[Parse Logs]
+        F1 --> F2[Generate Activity Summary]
+
+        G --> G1[Check Preference Flags]
+        G1 --> G2[Apply Theme]
+        G2 --> C
+    end
+
+    %% 登出流程
+    C --> H{Log Out?}
+    H -- Yes --> I[Clear Session & Cookies]
+    H -- No --> C
+    I --> J([End])
+```
