@@ -336,9 +336,9 @@ flowchart TD
 
 ---
 
-## 8. Mermaid Diagram (Large-Scale System Architecture)
+## 8. Mermaid Diagram (Large-Scale System Architecture – GitHub Compatible)
 
-mermaid
+```mermaid
 flowchart LR
 
     %% ========== Client Layer ==========
@@ -362,8 +362,8 @@ flowchart LR
     %% ========== API Gateway & Auth ==========
     subgraph GATEWAY [API Gateway & Auth]
         APIGW[API Gateway]
-        AUTH[Auth Service<br/>(OAuth2 / JWT)]
-        RATELIMIT[Rate Limiter]
+        AUTH["Auth Service\n(OAuth2 / JWT)"]
+        RATELIMIT["Rate Limiter"]
     end
 
     LB --> APIGW
@@ -394,9 +394,9 @@ flowchart LR
 
     %% ========== Async / Messaging Layer ==========
     subgraph ASYNC [Async & Event Streaming]
-        MQ[Message Queue<br/>(e.g. RabbitMQ)]
-        EVT[Event Bus / Stream<br/>(e.g. Kafka)]
-        DLQ[Dead Letter Queue]
+        MQ["Message Queue\n(RabbitMQ)"]
+        EVT["Event Bus / Stream\n(Kafka)"]
+        DLQ["Dead Letter Queue"]
     end
 
     S_ORDER --> MQ
@@ -411,13 +411,13 @@ flowchart LR
 
     %% ========== Data Layer ==========
     subgraph DATA [Data Storage Layer]
-        DB_USER[(User DB)]
-        DB_ORDER[(Order DB)]
-        DB_PAYMENT[(Payment DB)]
-        DB_INVENTORY[(Inventory DB)]
-        DB_LOG[(Log DB / Data Lake)]
-        CACHE[(Distributed Cache<br/>(e.g. Redis Cluster))]
-        SEARCHIDX[(Search Index<br/>(e.g. Elasticsearch))]
+        DB_USER["User DB"]
+        DB_ORDER["Order DB"]
+        DB_PAYMENT["Payment DB"]
+        DB_INVENTORY["Inventory DB"]
+        DB_LOG["Log DB / Data Lake"]
+        CACHE["Distributed Cache\n(Redis Cluster)"]
+        SEARCHIDX["Search Index\n(Elasticsearch)"]
     end
 
     S_USER --> DB_USER
@@ -435,9 +435,9 @@ flowchart LR
     %% ========== Batch / Analytics / BI ==========
     subgraph ANALYTICS [Analytics / BI / Batch Jobs]
         ETL[ETL Jobs]
-        DW[(Data Warehouse)]
-        BI[BI Dashboard]
-        ML[ML Service / Recommendation Engine]
+        DW["Data Warehouse"]
+        BI["BI Dashboard"]
+        ML["ML Service\n(Recommendation Engine)"]
     end
 
     DB_ORDER --> ETL
@@ -448,18 +448,18 @@ flowchart LR
     ETL --> DW
     DW --> BI
     DW --> ML
-    ML --> S_RECO[Recommendation API]
+    ML --> S_RECO["Recommendation API"]
 
     %% Recommendation API 接回 Gateway
     S_RECO --> APIGW
 
     %% ========== Observability & Ops ==========
     subgraph OBS [Observability & Operations]
-        LOG[Centralized Logging]
-        METRIC[Metrics / Time-Series DB]
-        TRACE[Distributed Tracing]
-        ALERT[Alert Manager]
-        DASH[Ops Dashboard]
+        LOG["Centralized Logging"]
+        METRIC["Metrics Store"]
+        TRACE["Distributed Tracing"]
+        ALERT["Alert Manager"]
+        DASH["Ops Dashboard"]
     end
 
     SERVICES --> LOG
@@ -471,11 +471,11 @@ flowchart LR
 
     %% ========== Infra / Platform ==========
     subgraph INFRA [Infrastructure Platform]
-        K8S[Kubernetes Cluster]
-        REG[Container Registry]
-        CI[CI Pipeline]
-        CD[CD Pipeline]
-        SECRETS[Secrets Manager]
+        K8S["Kubernetes Cluster"]
+        REG["Container Registry"]
+        CI["CI Pipeline"]
+        CD["CD Pipeline"]
+        SECRETS["Secrets Manager"]
     end
 
     CI --> CD --> K8S
@@ -485,4 +485,5 @@ flowchart LR
     K8S --> GATEWAY
     K8S --> ASYNC
     K8S --> DATA
+```
 
