@@ -30,6 +30,8 @@
 ### H3 標題
 "### H3 標題"
 
+#### H4 標題
+"### H4 標題"
 ---
 
 ## 5️⃣ 無序清單（Bullet List）
@@ -113,3 +115,68 @@ print("Hello")
 "- [x] 已完成"
 
 ---
+
+
+| 左對齊 | 置中 | 右對齊 |
+|:---|:---:|---:|
+| Apple  | Banana | 30 |
+| Orange | Kiwi   | 50 |
+
+
+| 說明 |
+|------|
+| 第一行<br>第二行<br>第三行 |
+
+
+
+| 指令 |
+|------|
+| `pip install numpy` |
+
+
+| Python 範例 |
+|-------------|
+| <pre>def add(a, b):<br>    return a + b</pre> |
+
+
+<table>
+  <tr>
+    <th colspan="2">合併兩欄</th>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>B</td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+    <td rowspan="2">合併兩行</td>
+    <td>右 1</td>
+  </tr>
+  <tr>
+    <td>右 2</td>
+  </tr>
+</table>
+
+
+| Icon |
+|------|
+| ![img](https://via.placeholder.com/50) |
+
+
+| 工具 | 連結 |
+|------|------|
+| ChatGPT | [點我](https://chat.openai.com) |
+
+
+| 項目 | 說明 |
+|:---:|---|
+| ![img](https://via.placeholder.com/40) | 這是多行文字示範：<br>• 支援 `<br>`<br>• 可放圖片<br>• 可混合語法 |
+
+
+
+
+
