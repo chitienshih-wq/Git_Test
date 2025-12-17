@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄羅斯方塊</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game-area">
+            <div class="left-panel">
+                <div class="score-board">
+                    <div class="score-item">
+                        <span class="label">分數</span>
+                        <span id="score">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="label">等級</span>
+                        <span id="level">1</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="label">行數</span>
+                        <span id="lines">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="main-board">
+                <canvas id="gameCanvas"></canvas>
+                <div class="game-overlay" id="gameOverlay">
+                    <div class="overlay-content">
+                        <h2 id="overlayTitle">遊戲暫停</h2>
+                        <p id="overlayMessage">按 P 鍵繼續</p>
+                        <button id="restartBtn" class="btn">重新開始</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div class="next-piece">
+                    <h3>下一個</h3>
+                    <canvas id="nextCanvas"></canvas>
+                </div>
+                
+                <div class="controls">
+                    <h3>操作說明</h3>
+                    <div class="control-item">
+                        <span class="key">← →</span>
+                        <span>移動</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">↑</span>
+                        <span>旋轉</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">空白鍵</span>
+                        <span>旋轉</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">↓</span>
+                        <span>快速落下</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">P</span>
+                        <span>暫停/繼續</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
+
